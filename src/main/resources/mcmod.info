@@ -1,0 +1,16 @@
+[
+{
+  "modid": "AximTech",
+  "name": "AximTech",
+  "description": "Collection of Tweaks and Nerfs for Axim Tech Pack",
+  "version": "0.1.8",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ax1m"],
+  "credits": "All the fantastic people over at MCF Forums",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
