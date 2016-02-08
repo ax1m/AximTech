@@ -7,8 +7,8 @@ public class Reference {
     public static final String MOD_ID = "AximTech";
     public static final String MOD_NAME = MOD_ID;
     public static final String MOD_VERSION = "0.1.8";
-    public static final String CLIENT_PROXY_CLASS = "ClientProxy";
-    public static final String SERVER_PROXY_CLASS = "ServerProxy";
+    public static final String CLIENT_PROXY_CLASS = "ch.ax1m.aximtech.proxy.ClientProxy";
+    public static final String SERVER_PROXY_CLASS = "ch.ax1m.aximtech.proxy.ServerProxy";
 
     public static final class Names {
         public static final class Items {
@@ -43,8 +43,8 @@ public class Reference {
         }
     }
     public static class Materials {
-        public static final Item.ToolMaterial FLINT = EnumHelper.addToolMaterial("flint", 1, 120, 5.0F, 2.0F, 7);
-        public static final Item.ToolMaterial STEEL = EnumHelper.addToolMaterial(Names.Items.STEEL, 2, 640, 7.5F, 3.0F, 9);
-        public static final Item.ToolMaterial TSTEEL = EnumHelper.addToolMaterial(Names.Items.TSTEEL, 3, 2560, 9.0F, 4.0F, 7);
+        public static final Item.ToolMaterial FLINT = EnumHelper.addToolMaterial("itemFlint", 1, 80, 5.0F, 2.0F, 7);
+        public static final Item.ToolMaterial STEEL = EnumHelper.addToolMaterial(Names.Items.STEEL, 2, 640, 7.5F, 3.5F, 9);
+        public static final Item.ToolMaterial TSTEEL = EnumHelper.addToolMaterial(Names.Items.TSTEEL, 3, 2560, 9.0F, 5.0F, 7);
     }
 }
