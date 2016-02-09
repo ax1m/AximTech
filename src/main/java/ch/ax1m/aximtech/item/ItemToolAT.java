@@ -39,6 +39,7 @@ public class ItemToolAT extends ItemTool {
         this.setCreativeTab(CreativeTabAT.ATTOOLS_TAB);
     }
 
+    @Override
     public boolean onItemUse(ItemStack holding, EntityPlayer player, World world, int x, int y, int z, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_) {
         if(this.toolType == "hoe") {
             if(!player.canPlayerEdit(x, y, z, p_77648_7_, holding)) { return false; }
@@ -58,13 +59,16 @@ public class ItemToolAT extends ItemTool {
 
     public EnumAction getItemUseAction(ItemStack holding) { if(this.toolType == "sword") { return EnumAction.block; } else { return null; }}
 
+    @Override
     public boolean func_150897_b(Block block) { return block == Blocks.web; }
 
+    @Override
     public int getMaxItemUseDuration(ItemStack holding)
     {
         return 72000;
     }
 
+    @Override
     public ItemStack onItemRightClick(ItemStack holding, World world, EntityPlayer player) {
         if(this.toolType == "sword") { player.setItemInUse(holding, this.getMaxItemUseDuration(holding)); }
         return holding;
