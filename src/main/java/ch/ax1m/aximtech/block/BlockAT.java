@@ -9,8 +9,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class BlockAT extends Block {
-    public BlockAT(String blockName) {
-        super(Material.iron);
+    public BlockAT(String blockName, Material material, String harvestTool, float hardness, int harvestLevel) {
+        super(material);
+        this.setHardness(hardness);
+        this.setHarvestLevel(harvestTool, harvestLevel);
         this.setBlockName(blockName);
         this.setCreativeTab(CreativeTabAT.AT_TAB);
     }

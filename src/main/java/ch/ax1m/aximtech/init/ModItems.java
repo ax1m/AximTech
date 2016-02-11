@@ -34,9 +34,13 @@ public class ModItems {
     public static final ItemToolAT hoeSteel = new ItemToolAT(Reference.Names.Items.STEEL_HOE, "hoe", Reference.Materials.STEEL);
     public static final ItemToolAT hoeTungstenSteel = new ItemToolAT(Reference.Names.Items.TSTEEL_HOE, "hoe", Reference.Materials.TSTEEL);
 
+    public static final ItemAT nuggetIron= new ItemAT(Reference.Names.Items.IRON_NUGGET);
+    public static final ItemAT ingotTin= new ItemAT(Reference.Names.Items.TIN);
+    public static final ItemAT nuggetTin= new ItemAT(Reference.Names.Items.TIN_NUGGET);
+    public static final ItemAT ingotCopper= new ItemAT(Reference.Names.Items.COPPER);
+    public static final ItemAT nuggetCopper= new ItemAT(Reference.Names.Items.COPPER_NUGGET);
     public static final ItemAT ingotBronze= new ItemAT(Reference.Names.Items.BRONZE);
     public static final ItemAT nuggetBronze= new ItemAT(Reference.Names.Items.BRONZE_NUGGET);
-    public static final ItemAT nuggetIron= new ItemAT(Reference.Names.Items.IRON_NUGGET);
     public static final ItemAT ingotSteel = new ItemAT(Reference.Names.Items.STEEL);
     public static final ItemAT nuggetSteel = new ItemAT(Reference.Names.Items.STEEL_NUGGET);
     public static final ItemAT ingotTungstenCoated = new ItemAT(Reference.Names.Items.TCOATED);
@@ -45,9 +49,13 @@ public class ModItems {
 
     public static void init() {
 
+        GameRegistry.registerItem(nuggetIron, Reference.Names.Items.IRON_NUGGET, Reference.MOD_ID);
+        GameRegistry.registerItem(ingotTin, Reference.Names.Items.TIN, Reference.MOD_ID);
+        GameRegistry.registerItem(nuggetTin, Reference.Names.Items.TIN_NUGGET, Reference.MOD_ID);
+        GameRegistry.registerItem(ingotCopper, Reference.Names.Items.COPPER, Reference.MOD_ID);
+        GameRegistry.registerItem(nuggetCopper, Reference.Names.Items.COPPER_NUGGET, Reference.MOD_ID);
         GameRegistry.registerItem(ingotBronze, Reference.Names.Items.BRONZE, Reference.MOD_ID);
         GameRegistry.registerItem(nuggetBronze, Reference.Names.Items.BRONZE_NUGGET, Reference.MOD_ID);
-        GameRegistry.registerItem(nuggetIron, Reference.Names.Items.IRON_NUGGET, Reference.MOD_ID);
         GameRegistry.registerItem(ingotSteel, Reference.Names.Items.STEEL, Reference.MOD_ID);
         GameRegistry.registerItem(nuggetSteel, Reference.Names.Items.STEEL_NUGGET, Reference.MOD_ID);
         GameRegistry.registerItem(ingotTungstenCoated, Reference.Names.Items.TCOATED, Reference.MOD_ID);
@@ -55,9 +63,13 @@ public class ModItems {
         GameRegistry.registerItem(nuggetTungstenSteel, Reference.Names.Items.TSTEEL_NUGGET, Reference.MOD_ID);
 
         OreDictionary.registerOre("itemFlint", Items.flint);
+        OreDictionary.registerOre("nuggetIron", nuggetIron);
+        OreDictionary.registerOre("ingotTin", ingotTin);
+        OreDictionary.registerOre("nuggetTin", nuggetTin);
+        OreDictionary.registerOre("ingotCopper", ingotCopper);
+        OreDictionary.registerOre("nuggetCopper", nuggetCopper);
         OreDictionary.registerOre("ingotBronze", ingotBronze);
         OreDictionary.registerOre("nuggetBronze", nuggetBronze);
-        OreDictionary.registerOre("nuggetIron", nuggetIron);
         OreDictionary.registerOre("ingotSteel", ingotSteel);
         OreDictionary.registerOre("nuggetSteel", nuggetSteel);
         OreDictionary.registerOre("ingotTungstenSteel", ingotTungstenSteel);

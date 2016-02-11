@@ -6,15 +6,19 @@ import net.minecraftforge.common.util.EnumHelper;
 public class Reference {
     public static final String MOD_ID = "AximTech";
     public static final String MOD_NAME = MOD_ID;
-    public static final String MOD_VERSION = "0.1.9";
+    public static final String MOD_VERSION = "0.1.10";
     public static final String CLIENT_PROXY_CLASS = "ch.ax1m.aximtech.proxy.ClientProxy";
     public static final String SERVER_PROXY_CLASS = "ch.ax1m.aximtech.proxy.ServerProxy";
 
     public static final class Names {
         public static final class Items {
+            public static final String IRON_NUGGET = "nuggetIron";
+            public static final String TIN = "ingotTin";
+            public static final String TIN_NUGGET = "nuggetTin";
+            public static final String COPPER = "ingotCopper";
+            public static final String COPPER_NUGGET = "nuggetCopper";
             public static final String BRONZE = "ingotBronze";
             public static final String BRONZE_NUGGET = "nuggetBronze";
-            public static final String IRON_NUGGET = "nuggetIron";
             public static final String STEEL = "ingotSteel";
             public static final String STEEL_NUGGET = "nuggetSteel";
             public static final String TCOATED = "ingotTungstenCoated";
@@ -47,6 +51,10 @@ public class Reference {
             public static final String TSTEEL_HOE = "hoeTungstenSteel";
         }
         public static final class Blocks {
+            public static final String TIN_ORE = "oreTin";
+            public static final String COPPER_ORE = "oreCopper";
+            public static final String TUNGSTEN_ORE = "oreTungsten";
+            public static final String TIN_BLOCK = "blockTin";
             public static final String COPPER_BLOCK = "blockCopper";
             public static final String BRONZE_BLOCK = "blockBronze";
             public static final String STEEL_BLOCK = "blockSteel";
@@ -56,7 +64,7 @@ public class Reference {
     public static class Materials {
         public static final Item.ToolMaterial FLINT = EnumHelper.addToolMaterial("itemFlint", 1, 96, 5.0F, 2.0F, 7);
         public static final Item.ToolMaterial BRONZE = EnumHelper.addToolMaterial(Names.Items.BRONZE, 2, 192, 6.0F, 3.0F, 13);
-        public static final Item.ToolMaterial STEEL = EnumHelper.addToolMaterial(Names.Items.STEEL, 2, 640, 7.5F, 3.5F, 9);
-        public static final Item.ToolMaterial TSTEEL = EnumHelper.addToolMaterial(Names.Items.TSTEEL, 3, 2560, 9.0F, 5.0F, 7);
+        public static final Item.ToolMaterial STEEL = EnumHelper.addToolMaterial(Names.Items.STEEL, 3, 640, 7.5F, 3.5F, 9);
+        public static final Item.ToolMaterial TSTEEL = EnumHelper.addToolMaterial(Names.Items.TSTEEL, 4, 2560, 9.0F, 5.0F, 7);
     }
 }

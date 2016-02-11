@@ -28,7 +28,7 @@ import java.util.Set;
 public class ItemToolAT extends ItemTool {
     private static HashMap<String, Float> damageEnum = new HashMap<String, Float>()
     {{ put("hoe", 0.0F); put("shovel", 1.0F); put("pickaxe", 2.0F); put("axe", 3.0F); put("sword", 4.0F); }};
-    private static Set<String> effectiveWeapons = new HashSet<String>() {{ add("sword"); add("hammer"); }};
+    private static Set<String> effectiveWeapons = new HashSet<String>() {{ add("sword"); add("hammer"); add("crowbar"); }};
     private String toolType;
     private float damageVsEntity;
     public ItemToolAT(String name, String type, ToolMaterial material) {
@@ -57,6 +57,7 @@ public class ItemToolAT extends ItemTool {
                 } else { return false; }}} else { return false; }
     }
 
+    @Override
     public EnumAction getItemUseAction(ItemStack holding) { if(this.toolType == "sword") { return EnumAction.block; } else { return null; }}
 
     @Override

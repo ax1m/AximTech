@@ -36,6 +36,16 @@ public class Recipes {
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetIron, 9), "ingotIron"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.iron_ingot), "XXX", "XXX", "XXX", 'X', "nuggetIron"));
 
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetTin, 9), "ingotTin"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ingotTin), "XXX", "XXX", "XXX", 'X', "nuggetTin"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotTin, 9), "blockTin"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockTin), "XXX", "XXX", "XXX", 'X', "ingotTin"));
+
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetCopper, 9), "ingotCopper"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ingotCopper), "XXX", "XXX", "XXX", 'X', "nuggetCopper"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotCopper, 9), "blockCopper"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCopper), "XXX", "XXX", "XXX", 'X', "ingotCopper"));
+
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetBronze, 9), "ingotBronze"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ingotBronze), "XXX", "XXX", "XXX", 'X', "nuggetBronze"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotBronze, 9), "blockBronze"));
