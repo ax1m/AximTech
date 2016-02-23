@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "0.1.10"
+version = "0.1.11"
 group= "com.ax1m.aximtech"
 archivesBaseName = "AximTech"
 

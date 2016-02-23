@@ -9,7 +9,9 @@ import java.io.File;
 public class ConfigurationHandler {
     public static Configuration configuration;
     public static boolean DO_HARVEST_LEVEL_TWEAK;
-    public static boolean ADD_NEW_MATERIALS;
+    public static boolean SPAWN_TIN;
+    public static boolean SPAWN_COPPER;
+    public static boolean SPAWN_TUNGSTEN;
 
     public static void init(File configFile) {
         if (configuration == null) {
@@ -22,6 +24,15 @@ public class ConfigurationHandler {
 
         DO_HARVEST_LEVEL_TWEAK = configuration.get("main", "miningLevelNerf", true,
                 "Increases harvest level of coal, iron, and diamond ores by 1 each").getBoolean(true);
+
+        SPAWN_TIN = configuration.get("ores", "spawnTin", true,
+                "Adds Tin Ore to your worldgen").getBoolean(true);
+
+        SPAWN_COPPER = configuration.get("ores", "spawnCopper", true,
+                "Adds Copper Ore to your worldgen").getBoolean(true);
+
+        SPAWN_TUNGSTEN = configuration.get("ores", "spawnTungsten", true,
+                "Adds Tungsten Ore to your worldgen").getBoolean(true);
 
         if (configuration.hasChanged()) {
             configuration.save();

@@ -1,14 +1,17 @@
 package ch.ax1m.aximtech;
 
 import ch.ax1m.aximtech.init.*;
+import ch.ax1m.aximtech.item.ItemToolAT;
 import ch.ax1m.aximtech.proxy.IProxyAT;
 import ch.ax1m.aximtech.utils.*;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
@@ -24,8 +27,10 @@ public class AximTech
     public void preInit(FMLPreInitializationEvent event) {
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
         LogHandler.info("Registering items");
-        ModItems.init();
         ModBlocks.init();
+        ModItems.init();
+        LogHandler.info("Registering worldgen");
+        GameRegistry.registerWorldGenerator(new OreGenerator(), 1);
         LogHandler.info("PreInitialization complete");
     }
 
@@ -35,6 +40,7 @@ public class AximTech
             LogHandler.info("Enabling HarvestLevel Nerfs");
             MinecraftForge.EVENT_BUS.register(new HarvestLevelNerf());
         }
+        ItemToolAT.popHammable();
         LogHandler.info("Registering recipes");
         Recipes.init();
         LogHandler.info("Initialization complete");

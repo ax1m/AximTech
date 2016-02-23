@@ -1,38 +1,74 @@
 itemGroup.aximtech=AximTech
+itemGroup.aximtechtools=AximTech Tools
+
+item.aximtech:oreTin.name=Tin Ore
+item.aximtech:oreCopper.name=Copper Ore
+item.aximtech:oreTungsten.name=Tungsten Ore
+item.aximtech:blockTin.name=Tin Block
+item.aximtech:blockCopper.name=Copper Block
+item.aximtech:blockBronze.name=Bronze Block
+item.aximtech:blockSteel.name=Steel Block
+item.aximtech:blockTungstenSteel.name=Tungstensteel Block
+
 item.aximtech:nuggetIron.name=Iron Nugget
 item.aximtech:ingotTin.name=Tin Ingot
 item.aximtech:nuggetTin.name=Tin Nugget
-item.aximtech:blockTin.name=Tin Block
 item.aximtech:ingotCopper.name=Copper Ingot
 item.aximtech:nuggetCopper.name=Copper Nugget
-item.aximtech:blockCopper.name=Copper Block
 item.aximtech:ingotBronze.name=Bronze Ingot
 item.aximtech:nuggetBronze.name=Bronze Nugget
-item.aximtech:blockBronze.name=Bronze Block
 item.aximtech:ingotSteel.name=Steel Ingot
 item.aximtech:nuggetSteel.name=Steel Nugget
-item.aximtech:blockSteel.name=Steel Block
 item.aximtech:ingotTungstenCoated.name=Tungsten coated Steel Ingot
 item.aximtech:ingotTungstenSteel.name=Tungstensteel Ingot
-item.aximtech:nuggetTungstensteel.name=Tungstensteel Nugget
-item.aximtech:blockTungstensteel.name=Tungstensteel Block
+item.aximtech:nuggetTungstenSteel.name=Tungstensteel Nugget
+
 item.aximtech:swordFlint.name=Flint Sword
 item.aximtech:swordBronze.name=Bronze Sword
 item.aximtech:swordSteel.name=Steel Sword
 item.aximtech:swordTungstenSteel.name=Tungstensteel Sword
+
 item.aximtech:pickaxeFlint.name=Flint Pickaxe
 item.aximtech:pickaxeBronze.name=Bronze Pickaxe
 item.aximtech:pickaxeSteel.name=Steel Pickaxe
 item.aximtech:pickaxeTungstenSteel.name=Tungstensteel Pickaxe
+
 item.aximtech:axeFlint.name=Flint Axe
 item.aximtech:axeBronze.name=Bronze Axe
 item.aximtech:axeSteel.name=Steel Axe
 item.aximtech:axeTungstenSteel.name=Tungstensteel Axe
+
 item.aximtech:shovelFlint.name=Flint Shovel
 item.aximtech:shovelBronze.name=Bronze Shovel
 item.aximtech:shovelSteel.name=Steel Shovel
 item.aximtech:shovelTungstenSteel.name=Tungstensteel Shovel
+
 item.aximtech:hoeFlint.name=Flint Hoe
 item.aximtech:hoeBronze.name=Bronze Hoe
 item.aximtech:hoeSteel.name=Steel Hoe
 item.aximtech:hoeTungstenSteel.name=Tungstensteel Hoe
+
+item.aximtech:wrenchBronze.name=Bronze Wrench
+item.aximtech:wrenchIron.name=Iron Wrench
+item.aximtech:wrenchSteel.name=Steel Wrench
+item.aximtech:wrenchTungstenSteel.name=Tungstensteel Wrench
+
+item.aximtech:hammerBronze.name=Bronze Hammer
+item.aximtech:hammerIron.name=Iron Hammer
+item.aximtech:hammerSteel.name=Steel Hammer
+item.aximtech:hammerTungstenSteel.name=Tungstensteel Hammer
+
+item.aximtech:crowbarBronze.name=Bronze Crowbar
+item.aximtech:crowbarIron.name=Iron Crowbar
+item.aximtech:crowbarSteel.name=Steel Crowbar
+item.aximtech:crowbarTungstenSteel.name=Tungstensteel Crowbar
+
+item.aximtech:fileBronze.name=Bronze File
+item.aximtech:fileIron.name=Iron File
+item.aximtech:fileSteel.name=Steel File
+item.aximtech:fileTungstenSteel.name=Tungstensteel File
+
+item.aximtech:screwdriverBronze.name=Bronze Screwdriver
+item.aximtech:screwdriverIron.name=Iron Screwdriver
+item.aximtech:screwdriverSteel.name=Steel Screwdriver
+item.aximtech:screwdriverTungstenSteel.name=Tungstensteel Screwdriver

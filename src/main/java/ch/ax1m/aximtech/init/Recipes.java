@@ -8,6 +8,16 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class Recipes {
     public static void init() {
+        GameRegistry.addSmelting(ModBlocks.oreTin, new ItemStack(ModItems.ingotTin), 0.5F);
+        GameRegistry.addSmelting(ModItems.dustTin, new ItemStack(ModItems.ingotTin), 0.1F);
+        GameRegistry.addSmelting(ModBlocks.oreCopper, new ItemStack(ModItems.ingotCopper), 0.5F);
+        GameRegistry.addSmelting(ModItems.dustCopper, new ItemStack(ModItems.ingotCopper), 0.1F);
+
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.dustBronze, 4), "dustTin", "dustCopper", "dustCopper", "dustCopper"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotTungstenCoated), "ingotSteel", "dustTungsten"));
+
+        GameRegistry.addSmelting(ModItems.ingotTungstenCoated, new ItemStack(ModItems.ingotTungstenSteel), 1.0F);
+
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.swordFlint), " X ", " X ", " I ", 'X', "itemFlint", 'I', "stickWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.swordBronze), " X ", " X ", " I ", 'X', "ingotBronze", 'I', "stickWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.swordSteel), " X ", " X ", " I ", 'X', "ingotSteel", 'I', "stickWood"));

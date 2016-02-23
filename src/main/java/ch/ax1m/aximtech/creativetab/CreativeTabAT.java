@@ -13,7 +13,7 @@ public class CreativeTabAT {
         }
     };
 
-    public static final CreativeTabs ATTOOLS_TAB = new CreativeTabs(Reference.MOD_ID.toLowerCase()) {
+    public static final CreativeTabs ATTOOLS_TAB = new CreativeTabs(Reference.MOD_ID.toLowerCase() + "tools") {
         @Override
         public Item getTabIconItem() {
             return ModItems.pickaxeTungstenSteel;
