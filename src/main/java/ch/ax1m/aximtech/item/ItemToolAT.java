@@ -2,8 +2,6 @@ package ch.ax1m.aximtech.item;
 
 import ch.ax1m.aximtech.creativetab.CreativeTabAT;
 import ch.ax1m.aximtech.event.UseHammerEvent;
-import ch.ax1m.aximtech.init.ModBlocks;
-import ch.ax1m.aximtech.init.ModItems;
 import ch.ax1m.aximtech.utils.Reference;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
@@ -27,45 +25,21 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 import java.util.*;
 
 public class ItemToolAT extends ItemTool {
-    private static HashMap<String, Float> damageEnum = new HashMap<String, Float>()
-    {{ put("hoe", 0.0F); put("shovel", 1.0F); put("pickaxe", 2.0F); put("axe", 3.0F); put("sword", 4.0F);
-        put("wrench", 3.0F); put("hammer", 3.5F); put("crowbar", 4.5F); put("file", 2.0F); put("screwdriver", 2.5F); }};
-    private static Set<String> effectiveWeapons = new HashSet<String>() {{ add("sword"); add("hammer"); add("crowbar"); }};
-    private static HashMap<Block, Float> anvils = new HashMap<Block, Float>() {{ put(Blocks.anvil, 0.05F); }};
-    private static HashMap<Item, Item> hammable;
-    private String toolType;
-    private float damageVsEntity;
-    public ItemToolAT(String name, String type, ToolMaterial material) {
-        super(damageEnum.get(type), material, new HashSet());
+    private final String oreMaterial;
+    private final String toolType;
+    private final float damageVsEntity;
+    public ItemToolAT(String name, String oreMat, String type) {
+        super(Reference.ToolData.damageEnum.get(type), Reference.Materials.modMats.get(oreMat), new HashSet());
+        oreMaterial = oreMat;
         toolType = type;
-        damageVsEntity = damageEnum.get(type) + material.getDamageVsEntity();
+        damageVsEntity = Reference.ToolData.damageEnum.get(type) + this.toolMaterial.getDamageVsEntity();
         this.setUnlocalizedName(name);
         this.setCreativeTab(CreativeTabAT.ATTOOLS_TAB);
     }
 
-    public static void popHammable() {
-        hammable = new HashMap<Item, Item>() {{
-            put(new ItemStack(Blocks.stone).getItem(), new ItemStack(Blocks.cobblestone).getItem());
-            put(new ItemStack(Blocks.cobblestone).getItem(), new ItemStack(Blocks.gravel).getItem());
-            put(new ItemStack(Blocks.gravel).getItem(), new ItemStack(Blocks.sand).getItem());
-            put(new ItemStack(ModBlocks.oreTin).getItem(), ModItems.oreRocksTin);
-            put(ModItems.oreRocksTin, ModItems.oreGravelTin);
-            put(ModItems.oreGravelTin, ModItems.oreSandTin);
-            put(ModItems.oreSandTin, ModItems.dustTin);
-            put(new ItemStack(ModBlocks.oreCopper).getItem(), ModItems.oreRocksCopper);
-            put(ModItems.oreRocksCopper, ModItems.oreGravelCopper);
-            put(ModItems.oreGravelCopper, ModItems.oreSandCopper);
-            put(ModItems.oreSandCopper, ModItems.dustCopper);
-            put(new ItemStack(ModBlocks.oreTungsten).getItem(), ModItems.oreRocksTungsten);
-            put(ModItems.oreRocksTungsten, ModItems.oreGravelTungsten);
-            put(ModItems.oreGravelTungsten, ModItems.oreSandTungsten);
-            put(ModItems.oreSandTungsten, ModItems.dustTungsten);
-        }};
-    }
-
     @Override
     public boolean onItemUse(ItemStack holding, EntityPlayer player, World world, int x, int y, int z, int foo, float xx, float yy, float zz) {
-        if(this.toolType == "hoe") {
+        if(this.toolType.equals("hoe")) {
             if(!player.canPlayerEdit(x, y, z, foo, holding)) { return false; }
             else {
                 UseHoeEvent event = new UseHoeEvent(player, holding, world, x, y, z);
@@ -82,7 +56,7 @@ public class ItemToolAT extends ItemTool {
             }
         }
 
-        else if(this.toolType == "hammer") {
+        else if(this.toolType.equals("hammer")) {
             if(!player.canPlayerEdit(x, y, z, foo, holding)) { return false; }
             else {
                 UseHammerEvent event = new UseHammerEvent(player, holding, world, x, y, z);
@@ -90,13 +64,12 @@ public class ItemToolAT extends ItemTool {
                 if(event.getResult() == Event.Result.ALLOW) { holding.damageItem(1, player); return true; }
                 Block block = world.getBlock(x, y, z);
                 int meta = world.getBlockMetadata(x, y, z);
-                Block top = world.getBlock(x, y + 1, z);
                 String sound = "random.anvil_land";
                 Random rand = new Random();
-                if(foo != 0 && world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && anvils.containsKey(block)) {
+                if(foo != 0 && world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && Reference.ToolData.anvils.containsKey(block)) {
                     if(world.isRemote) { return true; }
                     else {
-                        if(rand.nextFloat() < anvils.get(block)) {
+                        if(rand.nextFloat() < Reference.ToolData.anvils.get(block)) {
                             if(meta < 8) { world.setBlockMetadataWithNotify(x, y, z, meta + 4, 2); }
                             else { world.setBlockToAir(x, y, z); sound = "random.anvil_break"; }
                         }
@@ -108,10 +81,10 @@ public class ItemToolAT extends ItemTool {
                             ItemStack stack = first.getEntityItem();
                             Item item = stack.getItem();
                             double x_ = first.posX; double y_ = first.posY; double z_ = first.posZ;
-                            if(hammable.containsKey(item)) {
+                            if(Reference.ToolData.hammerRecipes.containsKey(item)) {
                                 first.setEntityItemStack(new ItemStack(item, stack.stackSize - 1));
                                 int amount = (rand.nextFloat() < 0.05F) ? 2 : 1;
-                                EntityItem output = new EntityItem(world, x_, y_, z_, new ItemStack(hammable.get(item), amount));
+                                EntityItem output = new EntityItem(world, x_, y_, z_, new ItemStack(Reference.ToolData.hammerRecipes.get(item), amount));
                                 output.setVelocity(0.0D, 0.2D, 0.0D);
                                 world.spawnEntityInWorld(output);
                             }
@@ -128,7 +101,7 @@ public class ItemToolAT extends ItemTool {
     }
 
     @Override
-    public EnumAction getItemUseAction(ItemStack holding) { if(this.toolType == "sword") { return EnumAction.block; } else { return null; }}
+    public EnumAction getItemUseAction(ItemStack holding) { if(this.toolType.equals("sword")) { return EnumAction.block; } else { return null; }}
 
     @Override
     public boolean func_150897_b(Block block) { return block == Blocks.web; }
@@ -141,7 +114,7 @@ public class ItemToolAT extends ItemTool {
 
     @Override
     public ItemStack onItemRightClick(ItemStack holding, World world, EntityPlayer player) {
-        if(this.toolType == "sword") { player.setItemInUse(holding, this.getMaxItemUseDuration(holding)); }
+        if(this.toolType.equals("sword")) { player.setItemInUse(holding, this.getMaxItemUseDuration(holding)); }
         return holding;
     }
 
@@ -162,7 +135,7 @@ public class ItemToolAT extends ItemTool {
     @Override
     public boolean hitEntity(ItemStack holding, EntityLivingBase hit, EntityLivingBase player) {
         int damage = 2;
-        if(effectiveWeapons.contains(this.toolType)) { damage = 1; }
+        if(Reference.ToolData.effectiveWeapons.contains(this.toolType)) { damage = 1; }
         holding.damageItem(damage, player);
         return true;
     }
@@ -174,14 +147,18 @@ public class ItemToolAT extends ItemTool {
         return multimap;
     }
 
+    public String getOreMaterial() { return this.oreMaterial; }
+
+    public String getToolType() { return this.toolType; }
+
     @Override
     public String getUnlocalizedName() {
-        return String.format("item.%s%s", Reference.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        return String.format("item.%s%s", Reference.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName());
     }
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
-        return String.format("item.%s%s", Reference.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        return getUnlocalizedName();
     }
 
     @Override
@@ -190,7 +167,8 @@ public class ItemToolAT extends ItemTool {
         itemIcon = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 
-    protected String getUnwrappedUnlocalizedName(String unlocalizedName) {
+    public String getUnwrappedUnlocalizedName() {
+        String unlocalizedName = super.getUnlocalizedName();
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
     }
 }

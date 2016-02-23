@@ -1,10 +1,17 @@
 package ch.ax1m.aximtech.init;
 
+import ch.ax1m.aximtech.item.ItemToolAT;
+import ch.ax1m.aximtech.utils.LogHandler;
+import ch.ax1m.aximtech.utils.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import java.lang.reflect.Field;
 
 public class Recipes {
     public static void init() {
@@ -18,57 +25,75 @@ public class Recipes {
 
         GameRegistry.addSmelting(ModItems.ingotTungstenCoated, new ItemStack(ModItems.ingotTungstenSteel), 1.0F);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.swordFlint), " X ", " X ", " I ", 'X', "itemFlint", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.swordBronze), " X ", " X ", " I ", 'X', "ingotBronze", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.swordSteel), " X ", " X ", " I ", 'X', "ingotSteel", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.swordTungstenSteel), " X ", " X ", " I ", 'X', "ingotTungstenSteel", 'I', "stickWood"));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.pickaxeFlint), "XXX", " I ", " I ", 'X', "itemFlint", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.pickaxeBronze), "XXX", " I ", " I ", 'X', "ingotBronze", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.pickaxeSteel), "XXX", " I ", " I ", 'X', "ingotSteel", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.pickaxeTungstenSteel), "XXX", " I ", " I ", 'X', "ingotTungstenSteel", 'I', "stickWood"));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.axeFlint), "XX ", "XI ", " I ", 'X', "itemFlint", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.axeBronze), "XX ", "XI ", " I ", 'X', "ingotBronze", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.axeSteel), "XX ", "XI ", " I ", 'X', "ingotSteel", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.axeTungstenSteel), "XX ", "XI ", " I ", 'X', "ingotTungstenSteel", 'I', "stickWood"));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.shovelFlint), " X ", " I ", " I ", 'X', "itemFlint", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.shovelBronze), " X ", " I ", " I ", 'X', "ingotBronze", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.shovelSteel), " X ", " I ", " I ", 'X', "ingotSteel", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.shovelTungstenSteel), " X ", " I ", " I ", 'X', "ingotTungstenSteel", 'I', "stickWood"));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.hoeFlint), "XX ", " I ", " I ", 'X', "itemFlint", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.hoeBronze), "XX ", " I ", " I ", 'X', "ingotBronze", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.hoeSteel), "XX ", " I ", " I ", 'X', "ingotSteel", 'I', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.hoeTungstenSteel), "XX ", " I ", " I ", 'X', "ingotTungstenSteel", 'I', "stickWood"));
-
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetIron, 9), "ingotIron"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.iron_ingot), "XXX", "XXX", "XXX", 'X', "nuggetIron"));
 
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetTin, 9), "ingotTin"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ingotTin), "XXX", "XXX", "XXX", 'X', "nuggetTin"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotTin, 9), "blockTin"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockTin), "XXX", "XXX", "XXX", 'X', "ingotTin"));
+        for(String metal : Reference.Materials.metals) { addStorageRecipes(metal); }
 
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetCopper, 9), "ingotCopper"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ingotCopper), "XXX", "XXX", "XXX", 'X', "nuggetCopper"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotCopper, 9), "blockCopper"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCopper), "XXX", "XXX", "XXX", 'X', "ingotCopper"));
+        Field[] fields = ModTools.class.getFields();
+        for(Field field : fields) {
+            ItemToolAT  tool = null;
+            try { tool = (ItemToolAT) field.get(null); }
+            catch(IllegalAccessException e) { LogHandler.error(e); }
+            addToolRecipe(tool);
+        }
+    }
 
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetBronze, 9), "ingotBronze"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ingotBronze), "XXX", "XXX", "XXX", 'X', "nuggetBronze"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotBronze, 9), "blockBronze"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockBronze), "XXX", "XXX", "XXX", 'X', "ingotBronze"));
+    private static void addStorageRecipes(String oreName) {
+        Item nugget = null;
+        Item ingot = null;
+        Block block = null;
+        try {
+            nugget = (Item) ModItems.class.getField("nugget" + oreName).get(null);
+            ingot = (Item) ModItems.class.getField("ingot" + oreName).get(null);
+            block = (Block) ModBlocks.class.getField("block" + oreName).get(null);
+        }
+        catch(NoSuchFieldException e) { LogHandler.error(e); }
+        catch(IllegalAccessException e) { LogHandler.error(e); }
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(nugget, 9), "ingot" + oreName));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ingot), "XXX", "XXX", "XXX", 'X', "nugget" + oreName));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ingot, 9), "block" + oreName));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(block), "XXX", "XXX", "XXX", 'X', "ingot" + oreName));
+    }
 
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetSteel, 9), "ingotSteel"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ingotSteel), "XXX", "XXX", "XXX", 'X', "nuggetSteel"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotSteel, 9), "blockSteel"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockSteel), "XXX", "XXX", "XXX", 'X', "ingotSteel"));
-
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetTungstenSteel, 9), "ingotTungstenSteel"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ingotTungstenSteel), "XXX", "XXX", "XXX", 'X', "nuggetTungstenSteel"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.ingotTungstenSteel, 9), "blockTungstenSteel"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockTungstenSteel), "XXX", "XXX", "XXX", 'X', "ingotTungstenSteel"));
+    private static void addToolRecipe(ItemToolAT tool) {
+        String material = tool.getOreMaterial();
+        String[] pattern = new String[3];
+        switch(Reference.ToolData.toolTypes.indexOf(tool.getToolType())) {
+            case 0:
+                pattern[0] = " X "; pattern[1] = " X "; pattern[2] = " I ";
+                break;
+            case 1:
+                pattern[0] = "XXX"; pattern[1] = " I "; pattern[2] = " I ";
+                break;
+            case 2:
+                pattern[0] = "XX "; pattern[1] = "XI "; pattern[2] = " I ";
+                break;
+            case 3:
+                pattern[0] = " X "; pattern[1] = " I "; pattern[2] = " I ";
+                break;
+            case 4:
+                pattern[0] = "XX "; pattern[1] = " I "; pattern[2] = " I ";
+                break;
+            case 5:
+                pattern[0] = "X X"; pattern[1] = "XXX"; pattern[2] = " X ";
+                break;
+            case 6:
+                pattern[0] = "XXX"; pattern[1] = "XXX"; pattern[2] = " I ";
+                break;
+            case 7:
+                pattern[0] = "  X"; pattern[1] = " X "; pattern[2] = "X  ";
+                break;
+            case 8:
+                pattern[0] = "  X"; pattern[1] = " X "; pattern[2] = "I  ";
+                break;
+            case 9:
+                pattern[0] = " X "; pattern[1] = "I  "; pattern[2] = "   ";
+                break;
+            case 10:
+                pattern[0] = "III"; pattern[1] = "XXI"; pattern[2] = "   ";
+                break;
+        }
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(tool), pattern, 'X', material, 'I', "stickWood"));
     }
 }

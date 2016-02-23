@@ -19,7 +19,7 @@ public class BlockAT extends Block {
 
     @Override
     public String getUnlocalizedName() {
-        return String.format("item.%s%s", Reference.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        return String.format("item.%s%s", Reference.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName());
     }
 
     @Override
@@ -28,7 +28,8 @@ public class BlockAT extends Block {
         blockIcon = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 
-    protected String getUnwrappedUnlocalizedName(String unlocalizedName) {
+    public String getUnwrappedUnlocalizedName() {
+        String unlocalizedName = super.getUnlocalizedName();
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
     }
 }

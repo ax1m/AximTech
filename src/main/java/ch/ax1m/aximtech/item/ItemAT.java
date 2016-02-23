@@ -17,12 +17,12 @@ public class ItemAT extends Item {
 
     @Override
     public String getUnlocalizedName() {
-        return String.format("item.%s%s", Reference.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        return String.format("item.%s%s", Reference.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName());
     }
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
-        return String.format("item.%s%s", Reference.MOD_ID.toLowerCase() + ":", getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+        return getUnlocalizedName();
     }
 
     @Override
@@ -31,7 +31,8 @@ public class ItemAT extends Item {
         itemIcon = iconRegister.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 
-    protected String getUnwrappedUnlocalizedName(String unlocalizedName) {
+    public String getUnwrappedUnlocalizedName() {
+        String unlocalizedName = super.getUnlocalizedName();
         return unlocalizedName.substring(unlocalizedName.indexOf('.') + 1);
     }
 }

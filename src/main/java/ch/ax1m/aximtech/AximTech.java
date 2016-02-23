@@ -29,6 +29,7 @@ public class AximTech
         LogHandler.info("Registering items");
         ModBlocks.init();
         ModItems.init();
+        ModTools.init();
         LogHandler.info("Registering worldgen");
         GameRegistry.registerWorldGenerator(new OreGenerator(), 1);
         LogHandler.info("PreInitialization complete");
@@ -40,7 +41,7 @@ public class AximTech
             LogHandler.info("Enabling HarvestLevel Nerfs");
             MinecraftForge.EVENT_BUS.register(new HarvestLevelNerf());
         }
-        ItemToolAT.popHammable();
+        Reference.init();
         LogHandler.info("Registering recipes");
         Recipes.init();
         LogHandler.info("Initialization complete");

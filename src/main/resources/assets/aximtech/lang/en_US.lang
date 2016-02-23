@@ -72,3 +72,8 @@ item.aximtech:screwdriverBronze.name=Bronze Screwdriver
 item.aximtech:screwdriverIron.name=Iron Screwdriver
 item.aximtech:screwdriverSteel.name=Steel Screwdriver
 item.aximtech:screwdriverTungstenSteel.name=Tungstensteel Screwdriver
+
+item.aximtech:sawBronze.name=Bronze Saw
+item.aximtech:sawIron.name=Iron Saw
+item.aximtech:sawSteel.name=Steel Saw
+item.aximtech:sawTungstenSteel.name=Tungstensteel Saw

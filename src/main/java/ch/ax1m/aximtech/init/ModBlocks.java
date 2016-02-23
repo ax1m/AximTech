@@ -1,10 +1,13 @@
 package ch.ax1m.aximtech.init;
 
 import ch.ax1m.aximtech.block.BlockAT;
+import ch.ax1m.aximtech.utils.LogHandler;
 import ch.ax1m.aximtech.utils.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.lang.reflect.Field;
 
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModBlocks {
@@ -19,22 +22,14 @@ public class ModBlocks {
     public static final BlockAT blockTungstenSteel = new BlockAT(Reference.Names.Blocks.TSTEEL_BLOCK, Material.iron, "pickaxe", 24.0F, 4);
 
     public static void init() {
-        GameRegistry.registerBlock(oreTin, Reference.Names.Blocks.TIN_ORE);
-        GameRegistry.registerBlock(oreCopper, Reference.Names.Blocks.COPPER_ORE);
-        GameRegistry.registerBlock(oreTungsten, Reference.Names.Blocks.TUNGSTEN_ORE);
-        GameRegistry.registerBlock(blockTin, Reference.Names.Blocks.TIN_BLOCK);
-        GameRegistry.registerBlock(blockCopper, Reference.Names.Blocks.COPPER_BLOCK);
-        GameRegistry.registerBlock(blockBronze, Reference.Names.Blocks.BRONZE_BLOCK);
-        GameRegistry.registerBlock(blockSteel, Reference.Names.Blocks.STEEL_BLOCK);
-        GameRegistry.registerBlock(blockTungstenSteel, Reference.Names.Blocks.TSTEEL_BLOCK);
-
-        OreDictionary.registerOre("oreTin", oreTin);
-        OreDictionary.registerOre("oreCopper", oreCopper);
-        OreDictionary.registerOre("oreTungsten", oreTungsten);
-        OreDictionary.registerOre("blockTin", blockTin);
-        OreDictionary.registerOre("blockCopper", blockCopper);
-        OreDictionary.registerOre("blockBronze", blockBronze);
-        OreDictionary.registerOre("blockSteel", blockSteel);
-        OreDictionary.registerOre("blockTungstenSteel", blockTungstenSteel);
+        Field[] fields = ModBlocks.class.getFields();
+        for(Field field : fields) {
+            BlockAT block = null;
+            try { block = (BlockAT) field.get(null); }
+            catch(IllegalAccessException e) { LogHandler.error(e); }
+            String name = block.getUnwrappedUnlocalizedName();
+            GameRegistry.registerBlock(block, name);
+            if(name.substring(0, 3).matches("ore|blo")) { OreDictionary.registerOre(name, block); }
+        }
     }
 }
