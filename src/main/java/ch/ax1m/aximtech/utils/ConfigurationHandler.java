@@ -7,7 +7,7 @@ import net.minecraftforge.common.config.Configuration;
 import java.io.File;
 
 public class ConfigurationHandler {
-    public static Configuration configuration;
+    private static Configuration configuration;
     public static boolean DO_HARVEST_LEVEL_TWEAK;
     public static boolean SPAWN_TIN;
     public static boolean SPAWN_COPPER;

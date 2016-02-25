@@ -26,19 +26,19 @@ public class OreGenerator implements IWorldGenerator {
         }
     }
 
-    public void generateNether(World world, Random rand, int x, int z) {
+    private void generateNether(World world, Random rand, int x, int z) {
 
     }
-    public void generateOverworld(World world, Random rand, int x, int z) {
+    private void generateOverworld(World world, Random rand, int x, int z) {
         if(ConfigurationHandler.SPAWN_TIN) { generateOre(ModBlocks.oreTin, world, rand, x, z, 4, 11, 6, 32, 72, Blocks.stone); }
         if(ConfigurationHandler.SPAWN_COPPER) { generateOre(ModBlocks.oreCopper, world, rand, x, z, 6, 13, 9, 42, 88, Blocks.stone); }
         if(ConfigurationHandler.SPAWN_TUNGSTEN) { generateOre(ModBlocks.oreTungsten, world, rand, x, z, 1, 4, 1, 1, 13, Blocks.stone); }
     }
-    public void generateEnd(World world, Random rand, int x, int z) {
+    private void generateEnd(World world, Random rand, int x, int z) {
 
     }
 
-    public void generateOre(Block block, World world, Random rand, int x, int z, int minVeinSize, int maxVeinSize,
+    private void generateOre(Block block, World world, Random rand, int x, int z, int minVeinSize, int maxVeinSize,
                             int chance, int minY, int maxY, Block substrate) {
         int veinSize = minVeinSize + rand.nextInt(maxVeinSize - minVeinSize);
         int heightRange = maxY - minY;

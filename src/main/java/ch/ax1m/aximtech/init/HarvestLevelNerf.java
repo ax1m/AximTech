@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -39,7 +38,7 @@ public class HarvestLevelNerf {
         else if(isStone) { setMiningLevel(event, "pickaxe", 1, 12); }
     }
 
-    public void setMiningLevel(BlockEvent.HarvestDropsEvent event, String tool, int level) {
+    private void setMiningLevel(BlockEvent.HarvestDropsEvent event, String tool, int level) {
         ItemStack holding;
         try { holding = event.harvester.inventory.getStackInSlot(event.harvester.inventory.currentItem); }
         catch (NullPointerException e) { return; }
@@ -53,7 +52,7 @@ public class HarvestLevelNerf {
         }
     }
 
-    public void setMiningLevel(PlayerEvent.BreakSpeed event, String tool, int level, int divisor) {
+    private void setMiningLevel(PlayerEvent.BreakSpeed event, String tool, int level, int divisor) {
         ItemStack holding = event.entityPlayer.inventory.getStackInSlot(event.entityPlayer.inventory.currentItem);
         if(holding == null) { event.newSpeed = event.originalSpeed/divisor; return; }
         int harvestLevel;

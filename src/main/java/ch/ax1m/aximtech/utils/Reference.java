@@ -7,14 +7,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
-import scala.reflect.internal.Types;
 
 import java.util.*;
 
 public class Reference {
     public static final String MOD_ID = "AximTech";
     public static final String MOD_NAME = MOD_ID;
-    public static final String MOD_VERSION = "0.1.12";
+    public static final String MOD_VERSION = "0.1.13";
     public static final String CLIENT_PROXY_CLASS = "ch.ax1m.aximtech.proxy.ClientProxy";
     public static final String SERVER_PROXY_CLASS = "ch.ax1m.aximtech.proxy.ServerProxy";
 
@@ -23,6 +22,7 @@ public class Reference {
             public static final String FLINT = "itemFlint";
             public static final String IRON = "ingotIron";
             public static final String IRON_NUGGET = "nuggetIron";
+            public static final String GOLD = "ingotGold";
             public static final String TIN = "ingotTin";
             public static final String TIN_NUGGET = "nuggetTin";
             public static final String COPPER = "ingotCopper";
@@ -35,7 +35,65 @@ public class Reference {
             public static final String TSTEEL = "ingotTungstenSteel";
             public static final String TSTEEL_NUGGET = "nuggetTungstenSteel";
 
+            public static final String IRON_PLATE = "plateIron";
+            public static final String GOLD_PLATE = "plateGold";
+            public static final String TIN_PLATE = "plateTin";
+            public static final String COPPER_PLATE = "plateCopper";
+            public static final String BRONZE_PLATE = "plateBronze";
+            public static final String STEEL_PLATE = "plateSteel";
+            public static final String TSTEEL_PLATE = "plateTungstenSteel";
+
+            public static final String IRON_ROD = "rodIron";
+            public static final String GOLD_ROD = "rodGold";
+            public static final String TIN_ROD = "rodTin";
+            public static final String COPPER_ROD = "rodCopper";
+            public static final String BRONZE_ROD = "rodBronze";
+            public static final String STEEL_ROD = "rodSteel";
+            public static final String TSTEEL_ROD = "rodTungstenSteel";
+
+            public static final String IRON_BOLT = "boltIron";
+            public static final String GOLD_BOLT = "boltGold";
+            public static final String TIN_BOLT = "boltTin";
+            public static final String COPPER_BOLT = "boltCopper";
+            public static final String BRONZE_BOLT = "boltBronze";
+            public static final String STEEL_BOLT = "boltSteel";
+            public static final String TSTEEL_BOLT = "boltTungstenSteel";
+
+            public static final String IRON_SCREW = "screwIron";
+            public static final String GOLD_SCREW = "screwGold";
+            public static final String TIN_SCREW = "screwTin";
+            public static final String COPPER_SCREW = "screwCopper";
+            public static final String BRONZE_SCREW = "screwBronze";
+            public static final String STEEL_SCREW = "screwSteel";
+            public static final String TSTEEL_SCREW = "screwTungstenSteel";
+
+            public static final String IRON_RING = "ringIron";
+            public static final String GOLD_RING = "ringGold";
+            public static final String TIN_RING = "ringTin";
+            public static final String COPPER_RING = "ringCopper";
+            public static final String BRONZE_RING = "ringBronze";
+            public static final String STEEL_RING = "ringSteel";
+            public static final String TSTEEL_RING = "ringTungstenSteel";
+
+            public static final String IRON_GEAR = "gearIron";
+            public static final String GOLD_GEAR = "gearGold";
+            public static final String TIN_GEAR = "gearTin";
+            public static final String COPPER_GEAR = "gearCopper";
+            public static final String BRONZE_GEAR = "gearBronze";
+            public static final String STEEL_GEAR = "gearSteel";
+            public static final String TSTEEL_GEAR = "gearTungstenSteel";
+
+            public static final String IRON_ROTOR = "rotorIron";
+            public static final String GOLD_ROTOR = "rotorGold";
+            public static final String TIN_ROTOR = "rotorTin";
+            public static final String COPPER_ROTOR = "rotorCopper";
+            public static final String BRONZE_ROTOR = "rotorBronze";
+            public static final String STEEL_ROTOR = "rotorSteel";
+            public static final String TSTEEL_ROTOR = "rotorTungstenSteel";
+
             public static final String BRONZE_DUST = "dustBronze";
+            public static final String STEEL_DUST = "dustSteel";
+            public static final String TSTEEL_DUST = "dustTungstenSteel";
 
             public static final String IRON_ROCKS = "oreRocksIron";
             public static final String IRON_GRAVEL = "oreGravelIron";
@@ -61,7 +119,8 @@ public class Reference {
             public static final String TUNGSTEN_GRAVEL = "oreGravelTungsten";
             public static final String TUNGSTEN_SAND = "oreSandTungsten";
             public static final String TUNGSTEN_DUST = "dustTungsten";
-
+        }
+        public static final class Tools {
             public static final String FLINT_SWORD = "swordFlint";
             public static final String BRONZE_SWORD = "swordBronze";
             public static final String STEEL_SWORD = "swordSteel";
@@ -116,6 +175,11 @@ public class Reference {
             public static final String BRONZE_SAW = "sawBronze";
             public static final String STEEL_SAW = "sawSteel";
             public static final String TSTEEL_SAW = "sawTungstenSteel";
+
+            public static final String IRON_CUTTER = "cutterIron";
+            public static final String BRONZE_CUTTER = "cutterBronze";
+            public static final String STEEL_CUTTER = "cutterSteel";
+            public static final String TSTEEL_CUTTER = "cutterTungstenSteel";
         }
         public static final class Blocks {
             public static final String TIN_ORE = "oreTin";
@@ -133,51 +197,53 @@ public class Reference {
         public static final Item.ToolMaterial BRONZE = EnumHelper.addToolMaterial(Names.Items.BRONZE, 2, 192, 6.0F, 2.5F, 13);
         public static final Item.ToolMaterial STEEL = EnumHelper.addToolMaterial(Names.Items.STEEL, 3, 640, 7.5F, 3.5F, 9);
         public static final Item.ToolMaterial TSTEEL = EnumHelper.addToolMaterial(Names.Items.TSTEEL, 4, 2560, 9.0F, 5.0F, 7);
-        public static final Set<String> metals = new HashSet<String>()
+        public static final Set<String> modMetals = new HashSet<String>()
         {{ add("Tin"); add("Copper"); add("Bronze"); add("Steel"); add("TungstenSteel"); }};
+        public static final Set<String> allMetals = new HashSet<String>(modMetals) {{ add("Iron"); add("Gold"); }};
         public static final Map<String, Item.ToolMaterial> modMats = new HashMap<String, Item.ToolMaterial>() {{
             put(Names.Items.FLINT, FLINT);
             put(Names.Items.IRON , Item.ToolMaterial.IRON);
+            put(Names.Items.GOLD, Item.ToolMaterial.GOLD);
             put(Names.Items.BRONZE, BRONZE);
             put(Names.Items.STEEL, STEEL);
             put(Names.Items.TSTEEL, TSTEEL);
         }};
     }
     public static class ToolData {
-        public static final List<String> toolTypes = Arrays.asList("sword", "pickaxe", "axe", "shovel", "hoe", "wrench", "hammer", "crowbar", "file", "screwdriver", "saw");
+        public static final List<String> toolTypes = Arrays.asList("sword", "pickaxe", "axe", "shovel", "hoe", "wrench", "hammer", "crowbar", "file", "screwdriver", "saw", "cutter");
         public static final HashMap<String, Float> damageEnum = new HashMap<String, Float>()
         {{ put("hoe", 0.0F); put("shovel", 1.0F); put("pickaxe", 2.0F); put("axe", 3.0F); put("sword", 4.0F); put("wrench", 3.0F);
-            put("hammer", 3.5F); put("crowbar", 4.5F); put("file", 2.0F); put("screwdriver", 2.5F); put("saw", 3.0F); }};
+            put("hammer", 3.5F); put("crowbar", 4.5F); put("file", 2.0F); put("screwdriver", 2.5F); put("saw", 3.0F); put("cutter", 2.0F); }};
         public static final Set<String> effectiveWeapons = new HashSet<String>() {{ add("sword"); add("hammer"); add("crowbar"); }};
         public static final HashMap<Block, Float> anvils = new HashMap<Block, Float>() {{ put(Blocks.anvil, 0.05F); }};
         public static HashMap<Item, Item> hammerRecipes;
-    }
 
-    public static void init() {
-        ToolData.hammerRecipes = new HashMap<Item, Item>() {{
-            put(new ItemStack(Blocks.stone).getItem(), new ItemStack(Blocks.cobblestone).getItem());
-            put(new ItemStack(Blocks.cobblestone).getItem(), new ItemStack(Blocks.gravel).getItem());
-            put(new ItemStack(Blocks.gravel).getItem(), new ItemStack(Blocks.sand).getItem());
-            put(new ItemStack(Blocks.iron_ore).getItem(), ModItems.oreRocksIron);
-            put(ModItems.oreRocksIron, ModItems.oreGravelIron);
-            put(ModItems.oreGravelIron, ModItems.oreSandIron);
-            put(ModItems.oreSandIron, ModItems.dustIron);
-            put(new ItemStack(Blocks.gold_ore).getItem(), ModItems.oreRocksGold);
-            put(ModItems.oreRocksGold, ModItems.oreGravelGold);
-            put(ModItems.oreGravelGold, ModItems.oreSandGold);
-            put(ModItems.oreSandGold, ModItems.dustGold);
-            put(new ItemStack(ModBlocks.oreTin).getItem(), ModItems.oreRocksTin);
-            put(ModItems.oreRocksTin, ModItems.oreGravelTin);
-            put(ModItems.oreGravelTin, ModItems.oreSandTin);
-            put(ModItems.oreSandTin, ModItems.dustTin);
-            put(new ItemStack(ModBlocks.oreCopper).getItem(), ModItems.oreRocksCopper);
-            put(ModItems.oreRocksCopper, ModItems.oreGravelCopper);
-            put(ModItems.oreGravelCopper, ModItems.oreSandCopper);
-            put(ModItems.oreSandCopper, ModItems.dustCopper);
-            put(new ItemStack(ModBlocks.oreTungsten).getItem(), ModItems.oreRocksTungsten);
-            put(ModItems.oreRocksTungsten, ModItems.oreGravelTungsten);
-            put(ModItems.oreGravelTungsten, ModItems.oreSandTungsten);
-            put(ModItems.oreSandTungsten, ModItems.dustTungsten);
-        }};
+        public static void init() {
+            ToolData.hammerRecipes = new HashMap<Item, Item>() {{
+                put(new ItemStack(Blocks.stone).getItem(), new ItemStack(Blocks.cobblestone).getItem());
+                put(new ItemStack(Blocks.cobblestone).getItem(), new ItemStack(Blocks.gravel).getItem());
+                put(new ItemStack(Blocks.gravel).getItem(), new ItemStack(Blocks.sand).getItem());
+                put(new ItemStack(Blocks.iron_ore).getItem(), ModItems.oreRocksIron);
+                put(ModItems.oreRocksIron, ModItems.oreGravelIron);
+                put(ModItems.oreGravelIron, ModItems.oreSandIron);
+                put(ModItems.oreSandIron, ModItems.dustIron);
+                put(new ItemStack(Blocks.gold_ore).getItem(), ModItems.oreRocksGold);
+                put(ModItems.oreRocksGold, ModItems.oreGravelGold);
+                put(ModItems.oreGravelGold, ModItems.oreSandGold);
+                put(ModItems.oreSandGold, ModItems.dustGold);
+                put(new ItemStack(ModBlocks.oreTin).getItem(), ModItems.oreRocksTin);
+                put(ModItems.oreRocksTin, ModItems.oreGravelTin);
+                put(ModItems.oreGravelTin, ModItems.oreSandTin);
+                put(ModItems.oreSandTin, ModItems.dustTin);
+                put(new ItemStack(ModBlocks.oreCopper).getItem(), ModItems.oreRocksCopper);
+                put(ModItems.oreRocksCopper, ModItems.oreGravelCopper);
+                put(ModItems.oreGravelCopper, ModItems.oreSandCopper);
+                put(ModItems.oreSandCopper, ModItems.dustCopper);
+                put(new ItemStack(ModBlocks.oreTungsten).getItem(), ModItems.oreRocksTungsten);
+                put(ModItems.oreRocksTungsten, ModItems.oreGravelTungsten);
+                put(ModItems.oreGravelTungsten, ModItems.oreSandTungsten);
+                put(ModItems.oreSandTungsten, ModItems.dustTungsten);
+            }};
+        }
     }
 }

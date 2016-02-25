@@ -25,16 +25,30 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 import java.util.*;
 
 public class ItemToolAT extends ItemTool {
-    private final String oreMaterial;
+    private final boolean isMetal;
+    public final String oreMaterial;
     private final String toolType;
     private final float damageVsEntity;
     public ItemToolAT(String name, String oreMat, String type) {
         super(Reference.ToolData.damageEnum.get(type), Reference.Materials.modMats.get(oreMat), new HashSet());
+        isMetal = oreMat.substring(0, 5).equals("ingot");
         oreMaterial = oreMat;
         toolType = type;
         damageVsEntity = Reference.ToolData.damageEnum.get(type) + this.toolMaterial.getDamageVsEntity();
         this.setUnlocalizedName(name);
         this.setCreativeTab(CreativeTabAT.ATTOOLS_TAB);
+    }
+
+    @Override
+    public boolean doesContainerItemLeaveCraftingGrid(ItemStack stack) { return false; }
+
+    @Override
+    public boolean hasContainerItem(ItemStack stack) { return true; }
+
+    @Override
+    public ItemStack getContainerItem(ItemStack stack) {
+        stack.setItemDamage(stack.getItemDamage() + 1);
+        return stack;
     }
 
     @Override
@@ -147,7 +161,9 @@ public class ItemToolAT extends ItemTool {
         return multimap;
     }
 
-    public String getOreMaterial() { return this.oreMaterial; }
+    public boolean isMetal() { return this.isMetal; }
+
+    public String getOreMaterial() { return isMetal ? this.oreMaterial.substring(5) : this.oreMaterial; }
 
     public String getToolType() { return this.toolType; }
 

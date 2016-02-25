@@ -2,10 +2,10 @@ package ch.ax1m.aximtech.init;
 
 import ch.ax1m.aximtech.block.BlockAT;
 import ch.ax1m.aximtech.utils.LogHandler;
+import ch.ax1m.aximtech.utils.OreDictHandler;
 import ch.ax1m.aximtech.utils.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.oredict.OreDictionary;
 
 import java.lang.reflect.Field;
 
@@ -29,7 +29,7 @@ public class ModBlocks {
             catch(IllegalAccessException e) { LogHandler.error(e); }
             String name = block.getUnwrappedUnlocalizedName();
             GameRegistry.registerBlock(block, name);
-            if(name.substring(0, 3).matches("ore|blo")) { OreDictionary.registerOre(name, block); }
+            if(name.substring(0, 3).matches("ore|blo")) { OreDictHandler.register(name, block); }
         }
     }
 }
