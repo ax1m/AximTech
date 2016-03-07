@@ -26,7 +26,7 @@ import java.util.*;
 
 public class ItemToolAT extends ItemTool {
     private final boolean isMetal;
-    public final String oreMaterial;
+    private final String oreMaterial;
     private final String toolType;
     private final float damageVsEntity;
     public ItemToolAT(String name, String oreMat, String type) {
@@ -109,9 +109,7 @@ public class ItemToolAT extends ItemTool {
                     }
                 } else { return false; }
             }
-        }
-
-        else { return false; }
+        } else { return false; }
     }
 
     @Override
@@ -155,6 +153,7 @@ public class ItemToolAT extends ItemTool {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Multimap getItemAttributeModifiers() {
         Multimap multimap = super.getItemAttributeModifiers();
         multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Tool modifier", (double)this.damageVsEntity, 0));

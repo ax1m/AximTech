@@ -117,6 +117,7 @@ public class ModItems {
             ItemAT item = null;
             try { item = (ItemAT) field.get(null); }
             catch(IllegalAccessException e) { LogHandler.error(e); }
+            assert item != null;
             String name = item.getUnwrappedUnlocalizedName();
             GameRegistry.registerItem(item, name, Reference.MOD_ID);
             if(name.substring(0, 3).matches("ing|nug|dus|pla|rod|bol|scr|rin|gea|rot")) { OreDictHandler.register(name, item); }

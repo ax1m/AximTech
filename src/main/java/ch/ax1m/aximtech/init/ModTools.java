@@ -79,6 +79,7 @@ public class ModTools {
             ItemToolAT tool = null;
             try { tool = (ItemToolAT) field.get(null); }
             catch(IllegalAccessException e) { LogHandler.error(e); }
+            assert tool != null;
             GameRegistry.registerItem(tool, tool.getUnwrappedUnlocalizedName(), Reference.MOD_ID);
             OreDictionary.registerOre(tool.getToolType(), new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
         }

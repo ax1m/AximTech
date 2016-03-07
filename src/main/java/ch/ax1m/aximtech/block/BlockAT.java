@@ -7,6 +7,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.common.ForgeHooks;
 
 public class BlockAT extends Block {
     public BlockAT(String blockName, Material material, String harvestTool, float hardness, int harvestLevel) {
@@ -15,6 +17,11 @@ public class BlockAT extends Block {
         this.setHarvestLevel(harvestTool, harvestLevel);
         this.setBlockName(blockName);
         this.setCreativeTab(CreativeTabAT.AT_TAB);
+    }
+
+    @Override
+    public boolean canHarvestBlock(EntityPlayer player, int meta) {
+        return ForgeHooks.canHarvestBlock(this, player, meta);
     }
 
     @Override

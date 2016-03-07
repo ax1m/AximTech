@@ -5,15 +5,17 @@ import ch.ax1m.aximtech.utils.LogHandler;
 import ch.ax1m.aximtech.utils.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import org.apache.commons.lang3.text.WordUtils;
 
 import java.lang.reflect.Field;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Recipes {
     public static void init() {
@@ -30,6 +32,11 @@ public class Recipes {
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.nuggetIron, 9), "ingotIron"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.iron_ingot), "XXX", "XXX", "XXX", 'X', "nuggetIron"));
 
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.bricksBronzePlated),
+                "PPP", "hBw", "PPP", 'B', new ItemStack(Blocks.brick_block), 'P', "plateBronze", 'h', "hammer", 'w', "wrench"));
+
+        overrideVanillaRecipes();
+
         for(String metal : Reference.Materials.allMetals) {
             if(Reference.Materials.modMetals.contains(metal)) { addStorageRecipes(metal); }
             addPartRecipes(metal);
@@ -40,7 +47,8 @@ public class Recipes {
             ItemToolAT  tool = null;
             try { tool = (ItemToolAT) field.get(null); }
             catch(IllegalAccessException e) { LogHandler.error(e); }
-            addToolRecipe(tool);
+            assert tool != null;
+            addToolRecipe(tool, tool.getToolType(), tool.getOreMaterial(), tool.isMetal());
         }
     }
 
@@ -91,9 +99,9 @@ public class Recipes {
         for(ShapedOreRecipe recipe : recipes) { GameRegistry.addRecipe(recipe); }
     }
 
-    private static void addToolRecipe(ItemToolAT tool) {
+    private static void addToolRecipe(Item tool, String toolType, String mat, boolean isMetal) {
         String[] pattern = new String[3];
-        switch(Reference.ToolData.toolTypes.indexOf(tool.getToolType())) {
+        switch(Reference.ToolData.toolTypes.indexOf(toolType)) {
             case 0:     // sword
                 pattern[0] = " P "; pattern[1] = "fPh"; pattern[2] = " I "; break;
             case 1:     // pickaxe
@@ -119,18 +127,50 @@ public class Recipes {
             case 11:    // cutter
                 pattern[0] = "PfP"; pattern[1] = "hPs"; pattern[2] = "RSR"; break;
         }
-        boolean isMetal = tool.isMetal();
-        String mat = tool.getOreMaterial();
         String baseMat = isMetal ? "ingot" + mat : mat;
         if(!isMetal) { for(int i=0; i<pattern.length; i++) {
             pattern[i] = pattern[i].replaceAll("[fh]", " ").replaceAll("[PR]", "X"); }}
         Object[] recipe = new Object[] { null, null, null, 'X', baseMat, 'P', "plate" + mat, 'R', "rod" + mat,
                 'I', "stickWood", 'b', "dyeBlue", 'f', "file", 'h', "hammer", 's', "screwdriver" };
-        for(int i=0; i<3; i++) { recipe[i] = pattern[i]; }
+        System.arraycopy(pattern, 0, recipe, 0, 3);
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(tool), !isMetal, recipe));
     }
 
+    @SuppressWarnings("unchecked")
     private static void overrideVanillaRecipes() {
-
+        Item[] items = new Item[] { Items.flint_and_steel, Items.stick, new ItemStack(Blocks.planks).getItem(),
+                Items.iron_sword, Items.iron_pickaxe, Items.iron_axe, Items.iron_shovel, Items.iron_hoe,
+                Items.golden_sword, Items.golden_pickaxe, Items.golden_axe, Items.golden_shovel, Items.golden_hoe };
+        Set<Item> iSet = new HashSet<Item>(); iSet.addAll(Arrays.asList(items));
+        List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
+        Iterator<IRecipe> iter = recipes.iterator();
+        while(iter.hasNext()) {
+            ItemStack iStack = iter.next().getRecipeOutput();
+            if(iStack != null && iSet.contains(iStack.getItem())) iter.remove();
+        }
+        for(Item item : items) {
+            if(item instanceof ItemTool) {
+                String mat = WordUtils.capitalizeFully(((ItemTool) item).getToolMaterialName());
+                String toolType = item.getToolClasses(null).iterator().next();
+                addToolRecipe(item, toolType, mat, true);
+            } else if(item instanceof ItemSword) {
+                String mat = WordUtils.capitalizeFully(((ItemSword) item).getToolMaterialName());
+                addToolRecipe(item, "sword", mat, true);
+            } else if(item instanceof ItemHoe) {
+                String mat = WordUtils.capitalizeFully(((ItemHoe) item).getToolMaterialName());
+                addToolRecipe(item, "hoe", mat, true);
+            } else if(item == Items.flint_and_steel) {
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(item), "nuggetSteel", "itemFlint"));
+            } else if(item == Items.stick) {
+                GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(item, 2), "P", "P", 'P', "plankWood"));
+                GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(item, 4), "s", "P", "P", 's', "saw", 'P', "plankWood"));
+            } else {
+                for(int i=0; i<4; i++) {
+                    GameRegistry.addShapelessRecipe(new ItemStack(item, 2, i), new ItemStack((i < 4) ? Blocks.log : Blocks.log2, 1, i % 4));
+                    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(item, 4, i), "s", "L",
+                            's', "saw", 'L', new ItemStack((i < 4) ? Blocks.log : Blocks.log2, 1, i % 4)));
+                }
+            }
+        }
     }
 }

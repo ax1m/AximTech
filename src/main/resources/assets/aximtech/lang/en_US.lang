@@ -1,14 +1,21 @@
 itemGroup.aximtech=AximTech
 itemGroup.aximtechtools=AximTech Tools
 
+
+
 item.aximtech:oreTin.name=Tin Ore
 item.aximtech:oreCopper.name=Copper Ore
 item.aximtech:oreTungsten.name=Tungsten Ore
+
 item.aximtech:blockTin.name=Tin Block
 item.aximtech:blockCopper.name=Copper Block
 item.aximtech:blockBronze.name=Bronze Block
 item.aximtech:blockSteel.name=Steel Block
 item.aximtech:blockTungstenSteel.name=Tungstensteel Block
+
+item.aximtech:bricksBronzePlated.name=Bronze Plated Bricks
+
+
 
 item.aximtech:nuggetIron.name=Iron Nugget
 item.aximtech:ingotTin.name=Tin Ingot
@@ -22,6 +29,97 @@ item.aximtech:nuggetSteel.name=Steel Nugget
 item.aximtech:ingotTungstenCoated.name=Tungsten coated Steel Ingot
 item.aximtech:ingotTungstenSteel.name=Tungstensteel Ingot
 item.aximtech:nuggetTungstenSteel.name=Tungstensteel Nugget
+
+
+
+item.aximtech:plateIron.name=Iron Plate
+item.aximtech:plateGold.name=Gold Plate
+item.aximtech:plateTin.name=Tin Plate
+item.aximtech:plateCopper.name=Copper Plate
+item.aximtech:plateBronze.name=Bronze Plate
+item.aximtech:plateSteel.name=Steel Plate
+item.aximtech:plateTungstenSteel.name=Tungstensteel Plate
+
+item.aximtech:rodIron.name=Iron Rod
+item.aximtech:rodGold.name=Gold Rod
+item.aximtech:rodTin.name=Tin Rod
+item.aximtech:rodCopper.name=Copper Rod
+item.aximtech:rodBronze.name=Bronze Rod
+item.aximtech:rodSteel.name=Steel Rod
+item.aximtech:rodTungstenSteel.name=Tungstensteel Rod
+
+item.aximtech:boltIron.name=Iron Bolt
+item.aximtech:boltGold.name=Gold Bolt
+item.aximtech:boltTin.name=Tin Bolt
+item.aximtech:boltCopper.name=Copper Bolt
+item.aximtech:boltBronze.name=Bronze Bolt
+item.aximtech:boltSteel.name=Steel Bolt
+item.aximtech:boltTungstenSteel.name=Tungstensteel Bolt
+
+item.aximtech:screwIron.name=Iron Screw
+item.aximtech:screwGold.name=Gold Screw
+item.aximtech:screwTin.name=Tin Screw
+item.aximtech:screwCopper.name=Copper Screw
+item.aximtech:screwBronze.name=Bronze Screw
+item.aximtech:screwSteel.name=Steel Screw
+item.aximtech:screwTungstenSteel.name=Tungstensteel Screw
+
+item.aximtech:ringIron.name=Iron Ring
+item.aximtech:ringGold.name=Gold Ring
+item.aximtech:ringTin.name=Tin Ring
+item.aximtech:ringCopper.name=Copper Ring
+item.aximtech:ringBronze.name=Bronze Ring
+item.aximtech:ringSteel.name=Steel Ring
+item.aximtech:ringTungstenSteel.name=Tungstensteel Ring
+
+item.aximtech:gearIron.name=Iron Gear
+item.aximtech:gearGold.name=Gold Gear
+item.aximtech:gearTin.name=Tin Gear
+item.aximtech:gearCopper.name=Copper Gear
+item.aximtech:gearBronze.name=Bronze Gear
+item.aximtech:gearSteel.name=Steel Gear
+item.aximtech:gearTungstenSteel.name=Tungstensteel Gear
+
+item.aximtech:rotorIron.name=Iron Rotor
+item.aximtech:rotorGold.name=Gold Rotor
+item.aximtech:rotorTin.name=Tin Rotor
+item.aximtech:rotorCopper.name=Copper Rotor
+item.aximtech:rotorBronze.name=Bronze Rotor
+item.aximtech:rotorSteel.name=Steel Rotor
+item.aximtech:rotorTungstenSteel.name=Tungstensteel Rotor
+
+
+
+item.aximtech:dustBronze.name=Bronze Dust
+item.aximtech:dustSteel.name=Steel Dust
+item.aximtech:dustTungstenSteel.name=Tungstensteel Dust
+
+item.aximtech:oreRocksIron.name=Iron Ore Rocks
+item.aximtech:oreGravelIron.name=Iron Ore Gravel
+item.aximtech:oreSandIron.name=Iron Ore Sand
+item.aximtech:dustIron.name=Iron Dust
+
+item.aximtech:oreRocksGold.name=Gold Ore Rocks
+item.aximtech:oreGravelGold.name=Gold Ore Gravel
+item.aximtech:oreSandGold.name=Gold Ore Sand
+item.aximtech:dustGold.name=Gold Dust
+
+item.aximtech:oreRocksTin.name=Tin Ore Rocks
+item.aximtech:oreGravelTin.name=Tin Ore Gravel
+item.aximtech:oreSandTin.name=Tin Ore Sand
+item.aximtech:dustTin.name=Tin Dust
+
+item.aximtech:oreRocksCopper.name=Copper Ore Rocks
+item.aximtech:oreGravelCopper.name=Copper Ore Gravel
+item.aximtech:oreSandCopper.name=Copper Ore Sand
+item.aximtech:dustCopper.name=Copper Dust
+
+item.aximtech:oreRocksTungsten.name=Tungsten Ore Rocks
+item.aximtech:oreGravelTungsten.name=Tungsten Ore Gravel
+item.aximtech:oreSandTungsten.name=Tungsten Ore Sand
+item.aximtech:dustTungsten.name=Tungsten Dust
+
+
 
 item.aximtech:swordFlint.name=Flint Sword
 item.aximtech:swordBronze.name=Bronze Sword
@@ -77,3 +175,8 @@ item.aximtech:sawBronze.name=Bronze Saw
 item.aximtech:sawIron.name=Iron Saw
 item.aximtech:sawSteel.name=Steel Saw
 item.aximtech:sawTungstenSteel.name=Tungstensteel Saw
+
+item.aximtech:cutterBronze.name=Bronze Cutter
+item.aximtech:cutterIron.name=Iron Cutter
+item.aximtech:cutterSteel.name=Steel Cutter
+item.aximtech:cutterTungstenSteel.name=Tungstensteel Cutter
