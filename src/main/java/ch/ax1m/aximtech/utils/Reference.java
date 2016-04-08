@@ -201,53 +201,79 @@ public class Reference {
         public static final Item.ToolMaterial BRONZE = EnumHelper.addToolMaterial(Names.Items.BRONZE, 2, 192, 6.0F, 2.5F, 13);
         public static final Item.ToolMaterial STEEL = EnumHelper.addToolMaterial(Names.Items.STEEL, 3, 640, 7.5F, 3.5F, 9);
         public static final Item.ToolMaterial TSTEEL = EnumHelper.addToolMaterial(Names.Items.TSTEEL, 4, 2560, 9.0F, 5.0F, 7);
-        public static final Set<String> modMetals = new HashSet<String>()
-        {{ add("Tin"); add("Copper"); add("Bronze"); add("Steel"); add("TungstenSteel"); }};
-        public static final Set<String> allMetals = new HashSet<String>(modMetals) {{ add("Iron"); add("Gold"); }};
-        public static final Map<String, Item.ToolMaterial> modMats = new HashMap<String, Item.ToolMaterial>() {{
-            put(Names.Items.FLINT, FLINT);
-            put(Names.Items.IRON , Item.ToolMaterial.IRON);
-            put(Names.Items.GOLD, Item.ToolMaterial.GOLD);
-            put(Names.Items.BRONZE, BRONZE);
-            put(Names.Items.STEEL, STEEL);
-            put(Names.Items.TSTEEL, TSTEEL);
-        }};
+        public static Set<String> modMetals = new HashSet<String>();
+        public static Set<String> allMetals = new HashSet<String>(modMetals);
+        public static Map<String, Item.ToolMaterial> modMats = new HashMap<String, Item.ToolMaterial>();
     }
     public static class ToolData {
-        public static final List<String> toolTypes = Arrays.asList("sword", "pickaxe", "axe", "shovel", "hoe", "wrench", "hammer", "crowbar", "file", "screwdriver", "saw", "cutter");
-        public static final HashMap<String, Float> damageEnum = new HashMap<String, Float>()
-        {{ put("hoe", 0.0F); put("shovel", 1.0F); put("pickaxe", 2.0F); put("axe", 3.0F); put("sword", 4.0F); put("wrench", 3.0F);
-            put("hammer", 3.5F); put("crowbar", 4.5F); put("file", 2.0F); put("screwdriver", 2.5F); put("saw", 3.0F); put("cutter", 2.0F); }};
-        public static final Set<String> effectiveWeapons = new HashSet<String>() {{ add("sword"); add("hammer"); add("crowbar"); }};
-        public static final HashMap<Block, Float> anvils = new HashMap<Block, Float>() {{ put(Blocks.anvil, 0.05F); }};
-        public static HashMap<Item, Item> hammerRecipes;
+        public static final List<String> toolTypes =
+                Arrays.asList("sword", "pickaxe", "axe", "shovel", "hoe", "wrench", "hammer", "crowbar", "file", "screwdriver", "saw", "cutter");
+        public static HashMap<String, Float> damageEnum = new HashMap<String, Float>();
+        public static Set<String> effectiveWeapons = new HashSet<String>();
+        public static HashMap<Block, Float> anvils = new HashMap<Block, Float>();
+        public static HashMap<Item, Item> hammerRecipes = new HashMap<Item, Item>();
+    }
 
-        public static void init() {
-            ToolData.hammerRecipes = new HashMap<Item, Item>() {{
-                put(new ItemStack(Blocks.stone).getItem(), new ItemStack(Blocks.cobblestone).getItem());
-                put(new ItemStack(Blocks.cobblestone).getItem(), new ItemStack(Blocks.gravel).getItem());
-                put(new ItemStack(Blocks.gravel).getItem(), new ItemStack(Blocks.sand).getItem());
-                put(new ItemStack(Blocks.iron_ore).getItem(), ModItems.oreRocksIron);
-                put(ModItems.oreRocksIron, ModItems.oreGravelIron);
-                put(ModItems.oreGravelIron, ModItems.oreSandIron);
-                put(ModItems.oreSandIron, ModItems.dustIron);
-                put(new ItemStack(Blocks.gold_ore).getItem(), ModItems.oreRocksGold);
-                put(ModItems.oreRocksGold, ModItems.oreGravelGold);
-                put(ModItems.oreGravelGold, ModItems.oreSandGold);
-                put(ModItems.oreSandGold, ModItems.dustGold);
-                put(new ItemStack(ModBlocks.oreTin).getItem(), ModItems.oreRocksTin);
-                put(ModItems.oreRocksTin, ModItems.oreGravelTin);
-                put(ModItems.oreGravelTin, ModItems.oreSandTin);
-                put(ModItems.oreSandTin, ModItems.dustTin);
-                put(new ItemStack(ModBlocks.oreCopper).getItem(), ModItems.oreRocksCopper);
-                put(ModItems.oreRocksCopper, ModItems.oreGravelCopper);
-                put(ModItems.oreGravelCopper, ModItems.oreSandCopper);
-                put(ModItems.oreSandCopper, ModItems.dustCopper);
-                put(new ItemStack(ModBlocks.oreTungsten).getItem(), ModItems.oreRocksTungsten);
-                put(ModItems.oreRocksTungsten, ModItems.oreGravelTungsten);
-                put(ModItems.oreGravelTungsten, ModItems.oreSandTungsten);
-                put(ModItems.oreSandTungsten, ModItems.dustTungsten);
-            }};
-        }
+    public static void preInit() {
+        Materials.modMetals.add("Tin");
+        Materials.modMetals.add("Copper");
+        Materials.modMetals.add("Bronze");
+        Materials.modMetals.add("Steel");
+        Materials.modMetals.add("TungstenSteel");
+
+        Materials.allMetals.add("Iron");
+        Materials.allMetals.add("Gold");
+
+        Materials.modMats.put(Names.Items.FLINT, Materials.FLINT);
+        Materials.modMats.put(Names.Items.IRON , Item.ToolMaterial.IRON);
+        Materials.modMats.put(Names.Items.GOLD, Item.ToolMaterial.GOLD);
+        Materials.modMats.put(Names.Items.BRONZE, Materials.BRONZE);
+        Materials.modMats.put(Names.Items.STEEL, Materials.STEEL);
+        Materials.modMats.put(Names.Items.TSTEEL, Materials.TSTEEL);
+
+        ToolData.damageEnum.put("hoe", 0.0F);
+        ToolData.damageEnum.put("shovel", 1.0F);
+        ToolData.damageEnum.put("pickaxe", 2.0F);
+        ToolData.damageEnum.put("axe", 3.0F);
+        ToolData.damageEnum.put("sword", 4.0F);
+        ToolData.damageEnum.put("wrench", 3.0F);
+        ToolData.damageEnum.put("hammer", 3.5F);
+        ToolData.damageEnum.put("crowbar", 4.5F);
+        ToolData.damageEnum.put("file", 2.0F);
+        ToolData.damageEnum.put("screwdriver", 2.5F);
+        ToolData.damageEnum.put("saw", 3.0F);
+        ToolData.damageEnum.put("cutter", 2.0F);
+
+        ToolData.effectiveWeapons.add("sword");
+        ToolData.effectiveWeapons.add("hammer");
+        ToolData.effectiveWeapons.add("crowbar");
+
+        ToolData.anvils.put(Blocks.anvil, 0.05F);
+    }
+
+    public static void init() {
+        ToolData.hammerRecipes.put(new ItemStack(Blocks.stone).getItem(), new ItemStack(Blocks.cobblestone).getItem());
+        ToolData.hammerRecipes.put(new ItemStack(Blocks.cobblestone).getItem(), new ItemStack(Blocks.gravel).getItem());
+        ToolData.hammerRecipes.put(new ItemStack(Blocks.gravel).getItem(), new ItemStack(Blocks.sand).getItem());
+        ToolData.hammerRecipes.put(new ItemStack(Blocks.iron_ore).getItem(), ModItems.oreRocksIron);
+        ToolData.hammerRecipes.put(ModItems.oreRocksIron, ModItems.oreGravelIron);
+        ToolData.hammerRecipes.put(ModItems.oreGravelIron, ModItems.oreSandIron);
+        ToolData.hammerRecipes.put(ModItems.oreSandIron, ModItems.dustIron);
+        ToolData.hammerRecipes.put(new ItemStack(Blocks.gold_ore).getItem(), ModItems.oreRocksGold);
+        ToolData.hammerRecipes.put(ModItems.oreRocksGold, ModItems.oreGravelGold);
+        ToolData.hammerRecipes.put(ModItems.oreGravelGold, ModItems.oreSandGold);
+        ToolData.hammerRecipes.put(ModItems.oreSandGold, ModItems.dustGold);
+        ToolData.hammerRecipes.put(new ItemStack(ModBlocks.oreTin).getItem(), ModItems.oreRocksTin);
+        ToolData.hammerRecipes.put(ModItems.oreRocksTin, ModItems.oreGravelTin);
+        ToolData.hammerRecipes.put(ModItems.oreGravelTin, ModItems.oreSandTin);
+        ToolData.hammerRecipes.put(ModItems.oreSandTin, ModItems.dustTin);
+        ToolData.hammerRecipes.put(new ItemStack(ModBlocks.oreCopper).getItem(), ModItems.oreRocksCopper);
+        ToolData.hammerRecipes.put(ModItems.oreRocksCopper, ModItems.oreGravelCopper);
+        ToolData.hammerRecipes.put(ModItems.oreGravelCopper, ModItems.oreSandCopper);
+        ToolData.hammerRecipes.put(ModItems.oreSandCopper, ModItems.dustCopper);
+        ToolData.hammerRecipes.put(new ItemStack(ModBlocks.oreTungsten).getItem(), ModItems.oreRocksTungsten);
+        ToolData.hammerRecipes.put(ModItems.oreRocksTungsten, ModItems.oreGravelTungsten);
+        ToolData.hammerRecipes.put(ModItems.oreGravelTungsten, ModItems.oreSandTungsten);
+        ToolData.hammerRecipes.put(ModItems.oreSandTungsten, ModItems.dustTungsten);
     }
 }

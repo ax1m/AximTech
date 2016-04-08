@@ -110,7 +110,7 @@ public class ModItems {
     public static final ItemAT oreSandTungsten = new ItemAT(Reference.Names.Items.TUNGSTEN_SAND);
     public static final ItemAT dustTungsten = new ItemAT(Reference.Names.Items.TUNGSTEN_DUST);
 
-    public static void init() {
+    public static void preInit() {
         OreDictHandler.register(Reference.Names.Items.FLINT, Items.flint);
         Field[] fields = ModItems.class.getFields();
         for(Field field : fields) {

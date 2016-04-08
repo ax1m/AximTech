@@ -73,7 +73,7 @@ public class ModTools {
     public static final ItemToolAT cutterSteel = new ItemToolAT(Names.Tools.STEEL_CUTTER, Names.Items.STEEL, "cutter");
     public static final ItemToolAT cutterTungstenSteel = new ItemToolAT(Names.Tools.TSTEEL_CUTTER, Names.Items.TSTEEL, "cutter");
 
-    public static void init() {
+    public static void preInit() {
         Field[] fields = ModTools.class.getFields();
         for(Field field : fields) {
             ItemToolAT tool = null;

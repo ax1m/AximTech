@@ -25,9 +25,10 @@ public class AximTech
     public void preInit(FMLPreInitializationEvent event) {
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
         LogHandler.info("Registering items");
-        ModBlocks.init();
-        ModItems.init();
-        ModTools.init();
+        Reference.preInit();
+        ModBlocks.preInit();
+        ModItems.preInit();
+        ModTools.preInit();
         LogHandler.info("Registering worldgen");
         GameRegistry.registerWorldGenerator(new OreGenerator(), 1);
         LogHandler.info("PreInitialization complete");
@@ -40,7 +41,7 @@ public class AximTech
             MinecraftForge.EVENT_BUS.register(new HarvestLevelNerf());
         }
         LogHandler.info("Registering recipes");
-        Reference.ToolData.init();
+        Reference.init();
         Recipes.init();
         LogHandler.info("Initialization complete");
     }

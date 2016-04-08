@@ -24,7 +24,7 @@ public class ModBlocks {
 
     public static final BlockAT bricksBronzePlated = new BlockAT(Reference.Names.Blocks.BRONZE_BRICKS, Material.iron, "wrench", 4.2F, 2);
 
-    public static void init() {
+    public static void preInit() {
         Field[] fields = ModBlocks.class.getFields();
         for(Field field : fields) {
             BlockAT block = null;
